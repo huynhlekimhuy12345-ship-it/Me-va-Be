@@ -148,9 +148,9 @@ export function Footer() {
             <div className="mt-3">
               <Link
                 to="/admin"
-                className="text-[11px] text-pastel-muted/60 hover:text-pastel-muted underline"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-pink-deep bg-white border border-brand-pink/40 hover:bg-brand-pink-light/50 px-3 py-1.5 rounded-full transition-colors"
               >
-                Khu vực quản lý (Admin)
+                🧸 Quản lý shop
               </Link>
             </div>
           </div>

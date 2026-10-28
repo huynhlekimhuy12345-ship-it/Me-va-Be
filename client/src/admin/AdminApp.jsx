@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import AdminLogin from './AdminLogin';
+import React from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import AdminLayout from './AdminLayout';
 import AdminDashboard from './AdminDashboard';
 import AdminProducts from './AdminProducts';
@@ -9,39 +8,13 @@ import AdminCategories from './AdminCategories';
 import AdminOrders from './AdminOrders';
 import AdminCustomers from './AdminCustomers';
 
+// Bản demo frontend-only: trang quản lý mở trực tiếp, không cần đăng nhập.
+// (Trước đây AdminApp kiểm tra phiên qua /api/admin/me; demo dùng localStorage.)
 export function AdminApp() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [checkingAuth, setCheckingAuth] = useState(true);
-
-  // Check existing session on load
-  useEffect(() => {
-    fetch('/api/admin/me')
-      .then((res) => {
-        if (res.ok) setIsAuthenticated(true);
-        else setIsAuthenticated(false);
-      })
-      .catch(() => setIsAuthenticated(false))
-      .finally(() => setCheckingAuth(false));
-  }, []);
-
-  if (checkingAuth) {
-    return (
-      <div className="min-h-screen bg-pastel-cream flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-pastel-pink border-t-brand-pink rounded-full animate-spin" />
-          <span className="text-xs font-semibold text-pastel-muted">Đang kiểm tra quyền quản trị...</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />;
-  }
-
+  const navigate = useNavigate();
   return (
     <Routes>
-      <Route element={<AdminLayout onLogout={() => setIsAuthenticated(false)} />}>
+      <Route element={<AdminLayout onLogout={() => navigate('/')} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="products" element={<AdminProducts />} />

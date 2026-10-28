@@ -1,0 +1,9 @@
+name = "me-va-be"
+compatibility_date = "2026-10-28"
+
+# Bản demo frontend-only: phục vụ file tĩnh đã build trong client/dist.
+# Không có backend Express/SQLite trên Workers — mọi dữ liệu demo nằm ở
+# localStorage của trình duyệt (xem client/src/lib/demoStore.js).
+[assets]
+directory = "./client/dist"
+not_found_handling = "single-page-application"

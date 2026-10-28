@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/product/ProductCard';
 import Button from '../components/common/Button';
+// Three.js hero tải lười (lazy) để bundle chính nhẹ cho mobile —
+// chunk 3D chỉ tải khi tới khu vực hero.
+const BabyClothesHero = lazy(() =>
+  import('../components/hero/BabyClothesHero').then((m) => ({ default: m.BabyClothesHero }))
+);
 import { MOCK_CATEGORIES, MOCK_PRODUCTS } from '../lib/mockData';
 import {
   Sparkles,
@@ -143,66 +148,9 @@ export function HomePage() {
                     🌿 Vải thô Hàn Quốc
                   </div>
 
-                  {/* Sleeping Pajama Bear Vector */}
-                  <svg className="w-52 h-52 sm:w-64 sm:h-64" viewBox="0 0 200 200" fill="none">
-                    {/* Cloud base */}
-                    <path
-                      d="M 40 160 A 20 20 0 0 1 70 145 A 30 30 0 0 1 130 145 A 25 25 0 0 1 165 160 A 15 15 0 0 1 155 180 L 45 180 A 15 15 0 0 1 40 160 Z"
-                      fill="#FFF8F0"
-                      stroke="#5B4A4A"
-                      strokeWidth="2.5"
-                    />
-                    {/* Stars */}
-                    <polygon points="30,45 34,55 45,56 36,63 39,73 30,68 21,73 24,63 15,56 26,55" fill="#FFEFC7" stroke="#5B4A4A" strokeWidth="1.5" />
-                    <polygon points="170,55 173,63 182,64 175,70 177,78 170,74 163,78 165,70 158,64 167,63" fill="#FFEFC7" stroke="#5B4A4A" strokeWidth="1.5" />
-
-                    {/* Pajama Nightcap / Sleeping Hat */}
-                    <path
-                      d="M 90 60 Q 140 30 155 70 Q 130 65 115 75 Z"
-                      fill="#FF8FAB"
-                      stroke="#5B4A4A"
-                      strokeWidth="2.5"
-                    />
-                    <circle cx="155" cy="70" r="8" fill="#FFF8F0" stroke="#5B4A4A" strokeWidth="2" />
-
-                    {/* Bear Ears */}
-                    <circle cx="70" cy="75" r="18" fill="#5B4A4A" />
-                    <circle cx="70" cy="75" r="9" fill="#FF8FAB" />
-                    <circle cx="130" cy="75" r="18" fill="#5B4A4A" />
-                    <circle cx="130" cy="75" r="9" fill="#FF8FAB" />
-
-                    {/* Bear Head */}
-                    <circle cx="100" cy="100" r="42" fill="#5B4A4A" />
-
-                    {/* Pajama Body & Collar */}
-                    <path
-                      d="M 68 135 Q 100 120 132 135 L 140 165 L 60 165 Z"
-                      fill="#C5F0DC"
-                      stroke="#5B4A4A"
-                      strokeWidth="2.5"
-                    />
-                    {/* Little buttons on Pajamas */}
-                    <circle cx="100" cy="142" r="3" fill="#FF8FAB" />
-                    <circle cx="100" cy="154" r="3" fill="#FF8FAB" />
-
-                    {/* Cute Snout */}
-                    <ellipse cx="100" cy="108" rx="18" ry="14" fill="#FFF8F0" />
-                    <polygon points="100,101 93,109 107,109" fill="#5B4A4A" />
-                    <path d="M 100 109 L 100 114" stroke="#5B4A4A" strokeWidth="2" strokeLinecap="round" />
-
-                    {/* Sleeping Eyes */}
-                    <path d="M 83 95 Q 89 89 95 95" stroke="#FFF8F0" strokeWidth="3" strokeLinecap="round" fill="none" />
-                    <path d="M 105 95 Q 111 89 117 95" stroke="#FFF8F0" strokeWidth="3" strokeLinecap="round" fill="none" />
-
-                    {/* Rosy Cheeks */}
-                    <circle cx="78" cy="108" r="5" fill="#FF8FAB" opacity="0.85" />
-                    <circle cx="122" cy="108" r="5" fill="#FF8FAB" opacity="0.85" />
-
-                    {/* Floating Zzz */}
-                    <text x="145" y="45" fill="#FF8FAB" fontFamily="Quicksand" fontWeight="bold" fontSize="16">Z</text>
-                    <text x="156" y="34" fill="#FF8FAB" fontFamily="Quicksand" fontWeight="bold" fontSize="12">z</text>
-                    <text x="164" y="26" fill="#FF8FAB" fontFamily="Quicksand" fontWeight="bold" fontSize="10">z</text>
-                  </svg>
+                  <Suspense fallback={null}>
+                    <BabyClothesHero />
+                  </Suspense>
 
                   <div className="text-center mt-2">
                     <p className="font-display font-bold text-sm text-pastel-text">

@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../store/CartContext';
 import { useToast } from '../components/common/Toast';
 import { MOCK_PRODUCTS } from '../lib/mockData';
+import { getProducts, getProductBySlug } from '../lib/demoStore';
 import { formatCurrency } from '../lib/utils';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
@@ -29,7 +30,7 @@ export function ProductDetailPage() {
   const { showToast } = useToast();
 
   const [product, setProduct] = useState(() => {
-    return MOCK_PRODUCTS.find((p) => p.slug === slug) || null;
+    return getProductBySlug(slug) || MOCK_PRODUCTS.find((p) => p.slug === slug) || null;
   });
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedVariantId, setSelectedVariantId] = useState(null);
@@ -98,8 +99,9 @@ export function ProductDetailPage() {
   const uniqueSizes = [...new Set(product.variants?.map((v) => v.size) || [])];
   const uniqueColors = [...new Set(product.variants?.map((v) => v.color).filter(Boolean) || [])];
 
-  // Related products (same category)
-  const relatedProducts = MOCK_PRODUCTS.filter(
+  // Related products (same category) — read from the shared demo store so
+  // products added/edited in /admin show up here too.
+  const relatedProducts = getProducts().filter(
     (p) => p.categoryId === product.categoryId && p.id !== product.id
   ).slice(0, 4);
 

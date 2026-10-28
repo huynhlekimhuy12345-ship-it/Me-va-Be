@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <circle cx="32" cy="32" r="30" fill="#FFD6E0" />
+  <!-- Bear ears -->
+  <circle cx="18" cy="18" r="8" fill="#5B4A4A" />
+  <circle cx="18" cy="18" r="4" fill="#FF8FAB" />
+  <circle cx="46" cy="18" r="8" fill="#5B4A4A" />
+  <circle cx="46" cy="18" r="4" fill="#FF8FAB" />
+  <!-- Bear head -->
+  <circle cx="32" cy="34" r="20" fill="#5B4A4A" />
+  <!-- Snout -->
+  <ellipse cx="32" cy="39" rx="9" ry="7" fill="#FFF8F0" />
+  <polygon points="32,36 28,40 36,40" fill="#5B4A4A" />
+  <path d="M 32 40 L 32 43" stroke="#5B4A4A" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Eyes -->
+  <ellipse cx="25" cy="31" rx="2" ry="2.5" fill="#FFF8F0" />
+  <ellipse cx="39" cy="31" rx="2" ry="2.5" fill="#FFF8F0" />
+  <!-- Rosy cheeks -->
+  <circle cx="21" cy="38" r="3" fill="#FF8FAB" opacity="0.8" />
+  <circle cx="43" cy="38" r="3" fill="#FF8FAB" opacity="0.8" />
+  <!-- Cute pajama collar / ribbon -->
+  <path d="M 24 50 Q 32 54 40 50 Q 32 58 24 50" fill="#C5F0DC" />
+</svg>

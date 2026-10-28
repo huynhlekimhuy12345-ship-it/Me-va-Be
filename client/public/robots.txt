@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api/admin/*
+
+Allow: /
+Allow: /san-pham
+Allow: /san-pham/*
+Allow: /lien-he
+
+Sitemap: https://ngapijama.vn/sitemap.xml
